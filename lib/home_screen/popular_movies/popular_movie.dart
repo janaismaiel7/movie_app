@@ -41,7 +41,7 @@ class _PopularMovieState extends State<PopularMovie> {
             },
             autoPlay: true,
             aspectRatio: 1.6,
-            autoPlayAnimationDuration: Duration(seconds: 20),
+            autoPlayAnimationDuration: Duration(seconds: 15),
             enlargeCenterPage: true,
             viewportFraction: 1.0,
           ),
