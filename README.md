@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+# movies_app
+=======
 # movie_app
+>>>>>>> 048b15c593b85ee068b9091a2409d14b1d9ebdc3
 
 A new Flutter project.
 
