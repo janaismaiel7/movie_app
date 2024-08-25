@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
     "name": "movies_app",
     "short_name": "movies_app",
+=======
+    "name": "movie_app",
+    "short_name": "movie_app",
+>>>>>>> 048b15c593b85ee068b9091a2409d14b1d9ebdc3
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
