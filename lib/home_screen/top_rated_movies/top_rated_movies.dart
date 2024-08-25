@@ -3,6 +3,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:movies_app/model/popular_response.dart';
 import 'package:movies_app/my_app_colors.dart';
 
+import '../../api/api_constant.dart';
+
 class TopRatedMovies extends StatelessWidget {
   final List<Results> movie;
   final int index;
@@ -20,7 +22,7 @@ class TopRatedMovies extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: CachedNetworkImage(
-              imageUrl: 'https://image.tmdb.org/t/p/original/${movie[index].backdropPath}',
+              imageUrl: '${ApiConstant.apiImage}${movie[index].backdropPath}',
               fit: BoxFit.cover,
               placeholder: (context, url) => Center(
                 child: CircularProgressIndicator(

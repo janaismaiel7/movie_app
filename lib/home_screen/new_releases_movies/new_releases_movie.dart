@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/model/popular_response.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
+import '../../api/api_constant.dart';
 import '../../my_app_colors.dart';
 
 class NewReleasesMovie extends StatelessWidget {
@@ -24,7 +25,7 @@ class NewReleasesMovie extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: CachedNetworkImage(
-              imageUrl: 'https://image.tmdb.org/t/p/original/${movie[index].backdropPath}',
+              imageUrl: '${ApiConstant.apiImage}${movie[index].backdropPath}',
               fit: BoxFit.cover,
               placeholder: (context, url) => Center(
                 child: CircularProgressIndicator(

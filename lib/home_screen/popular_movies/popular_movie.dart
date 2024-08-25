@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movies_app/api/api_constant.dart';
 import 'package:movies_app/model/popular_response.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:movies_app/my_app_colors.dart';
@@ -27,9 +28,16 @@ class _PopularMovieState extends State<PopularMovie> {
             final movie = widget.movies[itemIndex];
             return Container(
               width: double.infinity,
-              child: Image.network(
-                'https://image.tmdb.org/t/p/original/${movie.backdropPath}',
+              child: CachedNetworkImage(
+                imageUrl: '${ApiConstant.apiImage}${movie.backdropPath}',
                 fit: BoxFit.cover,
+                placeholder: (context, url) => Center(
+                  child: CircularProgressIndicator(
+                    color: MyAppColors.primaryColor,
+                  ),
+                ),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+
               ),
             );
           },
@@ -65,7 +73,7 @@ class _PopularMovieState extends State<PopularMovie> {
                   ],
                 ),
                 child: CachedNetworkImage(
-                  imageUrl: 'https://image.tmdb.org/t/p/original/${widget.movies[_currentIndex].posterPath}' ,
+                  imageUrl: '${ApiConstant.apiImage}${widget.movies[_currentIndex].posterPath}' ,
                   fit: BoxFit.cover,
                   width: MediaQuery.of(context).size.width * 0.4,
                   height: MediaQuery.of(context).size.height * 0.25,
