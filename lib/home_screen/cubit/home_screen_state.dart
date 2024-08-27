@@ -1,5 +1,7 @@
 import 'package:movies_app/model/popular_response.dart';
 
+import '../../model/more_like_this_response.dart';
+
 abstract class HomeScreenState{}
 class LoadingState extends HomeScreenState{}
 class SuccessState extends HomeScreenState{

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:movies_app/api/api_constant.dart';
+import 'package:movies_app/model/details_response.dart';
 import 'package:movies_app/model/popular_response.dart';
 import 'package:http/http.dart' as http;
 
@@ -38,5 +39,30 @@ class Api {
       throw Exception('Failed to load up coming movies');
     }
   }
+  static Future<DetailsResponse> getDetailsAboutMovie(int movieId) async {
+    final response = await http.get(
+        Uri.parse('https://api.themoviedb.org/3/movie/$movieId?api_key=${ApiConstant.apiKey}')
+    );
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return DetailsResponse.fromJson(data);
+    } else {
+      throw Exception('Failed to load movie details');
+    }
+  }
 
-}
+  static Future <List<Results>> getMoreLikeThis(int movieId) async {
+    final response = await http.get(
+        Uri.parse('https://api.themoviedb.org/3/movie/$movieId/similar?api_key=${ApiConstant.apiKey}'));
+    if(response.statusCode==200){
+      final List<dynamic> data = jsonDecode(response.body)['results'];
+      List<Results> movies=data.map((movie)=> Results.fromJson(movie)).toList();
+      return movies;
+    }else{
+      throw Exception('Failed to more like this movies');
+    }
+  }
+
+  }
+
+

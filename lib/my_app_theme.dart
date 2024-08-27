@@ -12,7 +12,12 @@ class MyAppTheme{
       bodyMedium: TextStyle(
         fontSize: 14 ,
         color: MyAppColors.whiteColor ,
-      )
+      ),
+      titleLarge: TextStyle(
+        fontSize: 20 ,
+        fontWeight: FontWeight.bold,
+        color: MyAppColors.whiteColor ,
+      ),
     ) ,
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(

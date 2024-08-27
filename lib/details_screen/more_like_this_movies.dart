@@ -6,11 +6,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import '../../api/api_constant.dart';
 import '../../my_app_colors.dart';
 
-class NewReleasesMovie extends StatelessWidget {
+class MoreLikeThisMovies extends StatelessWidget {
   final List<Results> movie;
   final int index;
 
-  NewReleasesMovie({required this.movie, required this.index});
+  MoreLikeThisMovies({required this.movie, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class NewReleasesMovie extends StatelessWidget {
               onTap: (){
                 Navigator.of(context).pushNamed(
                     DetailsScreen.routeName ,
-                arguments: movie[index].id!);
+                    arguments: movie[index].id!);
               },
               child: CachedNetworkImage(
                 imageUrl: '${ApiConstant.apiImage}${movie[index].backdropPath}',

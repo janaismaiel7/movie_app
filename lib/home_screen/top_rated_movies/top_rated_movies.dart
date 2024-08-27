@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:movies_app/details_screen/details_screen.dart';
 import 'package:movies_app/model/popular_response.dart';
 import 'package:movies_app/my_app_colors.dart';
 
@@ -21,15 +22,20 @@ class TopRatedMovies extends StatelessWidget {
           height:MediaQuery.of(context).size.width * 0.5 ,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: CachedNetworkImage(
-              imageUrl: '${ApiConstant.apiImage}${movie[index].backdropPath}',
-              fit: BoxFit.cover,
-              placeholder: (context, url) => Center(
-                child: CircularProgressIndicator(
-                  color: MyAppColors.primaryColor,
+            child: InkWell(
+              onTap: (){
+                Navigator.of(context).pushNamed(DetailsScreen.routeName, arguments: movie[index].id!);
+              },
+              child: CachedNetworkImage(
+                imageUrl: '${ApiConstant.apiImage}${movie[index].backdropPath}',
+                fit: BoxFit.cover,
+                placeholder: (context, url) => Center(
+                  child: CircularProgressIndicator(
+                    color: MyAppColors.primaryColor,
+                  ),
                 ),
+                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
-              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
           ),
         ),
