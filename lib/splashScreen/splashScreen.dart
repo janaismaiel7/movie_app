@@ -10,6 +10,7 @@ static const routeName= 'splashScreen';
 }
 
 class _SplashscreenState extends State<Splashscreen> {
+  @override
   void initState(){
     super.initState();
     Timer(Duration(seconds: 5),(){
