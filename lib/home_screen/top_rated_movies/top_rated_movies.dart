@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:movies_app/model/popular_response.dart';
 import 'package:movies_app/my_app_colors.dart';
+import 'package:movies_app/watchList/watchListServices.dart';
 
 import '../../api/api_constant.dart';
 
@@ -11,6 +12,8 @@ class TopRatedMovies extends StatelessWidget {
 
   TopRatedMovies({required this.movie, required this.index});
 
+  final Watchlistservices watchlistservices = Watchlistservices();
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -18,7 +21,7 @@ class TopRatedMovies extends StatelessWidget {
         Container(
           margin: EdgeInsets.symmetric(horizontal: 10),
           width: MediaQuery.of(context).size.width * 0.33,
-          height:MediaQuery.of(context).size.width * 0.5 ,
+          height: MediaQuery.of(context).size.width * 0.5,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: CachedNetworkImage(
@@ -33,6 +36,20 @@ class TopRatedMovies extends StatelessWidget {
             ),
           ),
         ),
+        Container(
+          color: MyAppColors.greyColor.withOpacity(0.5),
+          child: IconButton(
+              onPressed: () {
+                watchlistservices.addToWatchList(movie[index]);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Added to WatchList'),
+                ));
+              },
+              icon: Icon(
+                Icons.add,
+                color: MyAppColors.blackColor,
+              )),
+        )
       ],
     );
   }

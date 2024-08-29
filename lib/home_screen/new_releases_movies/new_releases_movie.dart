@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/model/popular_response.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:movies_app/watchList/watchListServices.dart';
 
 import '../../api/api_constant.dart';
 import '../../my_app_colors.dart';
@@ -10,6 +11,8 @@ class NewReleasesMovie extends StatelessWidget {
   final int index;
 
   NewReleasesMovie({required this.movie, required this.index});
+
+  final Watchlistservices _watchlistservices =Watchlistservices();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +39,22 @@ class NewReleasesMovie extends StatelessWidget {
               errorWidget: (context, url, error) => Icon(Icons.error), // Error icon
             ),
           ),
+          
         ),
+
+        Container(
+          
+          color: MyAppColors.greyColor.withOpacity(0.5),
+          child: 
+          IconButton(onPressed: (){
+          _watchlistservices.addToWatchList(movie[index]);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Added to Watch List!'))
+          );
+          },
+          icon: Icon(Icons.add,color: MyAppColors.blackColor,)),
+        )
+        
       ],
     );
   }

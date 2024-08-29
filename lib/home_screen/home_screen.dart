@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: MediaQuery.of(context).size.height*0.04,),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Text('Recommended' ,style: GoogleFonts.inter(
+                child: Text('Top Rated' ,style: GoogleFonts.inter(
                     textStyle: Theme.of(context).textTheme.titleMedium
                 ),),
               ) ,

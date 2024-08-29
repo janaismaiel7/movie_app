@@ -3,6 +3,7 @@ import 'package:movies_app/my_app_colors.dart';
 
 class MyAppTheme{
   static ThemeData appTheme= ThemeData(
+    
     primaryColor: MyAppColors.primaryColor ,
     textTheme: TextTheme(
       titleMedium: TextStyle(
@@ -12,6 +13,10 @@ class MyAppTheme{
       bodyMedium: TextStyle(
         fontSize: 14 ,
         color: MyAppColors.whiteColor ,
+      ),
+      titleLarge: TextStyle(
+        fontSize: 35,
+        color:MyAppColors.whiteColor
       )
     ) ,
 

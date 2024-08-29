@@ -24,6 +24,7 @@ class _PopularMovieState extends State<PopularMovie> {
       children: [
         CarouselSlider.builder(
           itemCount: widget.movies.length,
+
           itemBuilder: (context, itemIndex, realIndex) {
             final movie = widget.movies[itemIndex];
             return Container(
@@ -128,7 +129,16 @@ class _PopularMovieState extends State<PopularMovie> {
             ],
           ),
         ),
+          Container(
+          
+          color: MyAppColors.greyColor.withOpacity(0.5),
+          child: 
+          IconButton(onPressed: (){
+
+          }, icon: Icon(Icons.add,color: MyAppColors.blackColor,)),
+        )
       ],
+    
     );
   }
 }
