@@ -16,7 +16,7 @@ class TopRatedViewModel extends Cubit<HomeScreenState>{
        }
 
      }catch(e){
-       emit(ErrorState(errorMessage: 'Failed to load movies: ${e.toString()}'));
+       emit(ErrorState(errorMessage: 'Failed to load moviesgit: ${e.toString()}'));
 
      }
   }
