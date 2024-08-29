@@ -5,17 +5,20 @@ import 'package:movies_app/api/api_constant.dart';
 import 'package:movies_app/model/popular_response.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:movies_app/my_app_colors.dart';
+import 'package:movies_app/watchList/watchListServices.dart';
 
 class PopularMovie extends StatefulWidget {
   final List<Results> movies;
 
   PopularMovie({required this.movies});
-
+  
   @override
   _PopularMovieState createState() => _PopularMovieState();
 }
 
 class _PopularMovieState extends State<PopularMovie> {
+    final Watchlistservices watchlistservices = Watchlistservices();
+
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -24,6 +27,7 @@ class _PopularMovieState extends State<PopularMovie> {
       children: [
         CarouselSlider.builder(
           itemCount: widget.movies.length,
+
           itemBuilder: (context, itemIndex, realIndex) {
             final movie = widget.movies[itemIndex];
             return Container(
@@ -72,19 +76,37 @@ class _PopularMovieState extends State<PopularMovie> {
                     ),
                   ],
                 ),
-                child: CachedNetworkImage(
-                  imageUrl: '${ApiConstant.apiImage}${widget.movies[_currentIndex].posterPath}' ,
-                  fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  height: MediaQuery.of(context).size.height * 0.25,
-                  placeholder: (context, url) => Center(
-                    child: CircularProgressIndicator(
-                      color: MyAppColors.primaryColor,
+                
+                child: Stack(
+                  children: [CachedNetworkImage(
+                    imageUrl: '${ApiConstant.apiImage}${widget.movies[_currentIndex].posterPath}' ,
+                    fit: BoxFit.cover,
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    placeholder: (context, url) => Center(
+                      child: CircularProgressIndicator(
+                        color: MyAppColors.primaryColor,
+                      ),
                     ),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ),
+                  Container(
+          color: MyAppColors.greyColor.withOpacity(0.5),
+          child: IconButton(
+              onPressed: () {
+                watchlistservices.addToWatchList(widget.movies[_currentIndex]);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Added to WatchList'),
+                ));
+              },
+              icon: Icon(
+                Icons.add,
+                color: MyAppColors.blackColor,
+              )),
+        ),
+            ]),
               ),
+              
               SizedBox(width: MediaQuery.of(context).size.width*0.02),
               Expanded(
                 child: Padding(
@@ -128,7 +150,9 @@ class _PopularMovieState extends State<PopularMovie> {
             ],
           ),
         ),
+        
       ],
+    
     );
   }
 }
