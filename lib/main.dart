@@ -5,6 +5,7 @@ import 'package:movies_app/details_screen/details_screen.dart';
 import 'package:movies_app/firebase_options.dart';
 import 'package:movies_app/first_screen/first_screen.dart';
 import 'package:movies_app/my_app_theme.dart';
+import 'package:movies_app/splashScreen/splashScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,10 +23,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner:  false ,
       routes: {
-        FirstScreen.routeName : (context) => FirstScreen(),
+        Splashscreen.routeName : (context) => Splashscreen(),
         DetailsScreen.routeName:(context) => DetailsScreen()
       },
-      initialRoute: FirstScreen.routeName ,
+      initialRoute: Splashscreen.routeName ,
       theme: MyAppTheme.appTheme,
     );
   }
