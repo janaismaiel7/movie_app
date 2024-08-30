@@ -5,12 +5,13 @@
 
 class Movie {
   Movie({
-      this.page, 
-      this.results, 
-      this.totalPages, 
-      this.totalResults,
-      this.code,
-      this.message,});
+    this.page,
+    this.results,
+    this.totalPages,
+    this.totalResults,
+    this.code,
+    this.message,
+  });
 
   Movie.fromJson(dynamic json) {
     page = json['page'];
@@ -29,8 +30,8 @@ class Movie {
   List<Results>? results;
   int? totalPages;
   int? totalResults;
-  String ? code;
-  String ? message;
+  String? code;
+  String? message;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -42,7 +43,6 @@ class Movie {
     map['total_results'] = totalResults;
     return map;
   }
-
 }
 
 /// adult : false
@@ -62,21 +62,21 @@ class Movie {
 
 class Results {
   Results({
-      this.adult, 
-      this.backdropPath, 
-      this.genreIds, 
-      this.id, 
-      this.originalLanguage, 
-      this.originalTitle, 
-      this.overview, 
-      this.popularity, 
-      this.posterPath, 
-      this.releaseDate, 
-      this.title, 
-      this.video, 
-      this.voteAverage, 
-      this.voteCount,
-     });
+    this.adult,
+    this.backdropPath,
+    this.genreIds,
+    this.id,
+    this.originalLanguage,
+    this.originalTitle,
+    this.overview,
+    this.popularity,
+    this.posterPath,
+    this.releaseDate,
+    this.title,
+    this.video,
+    this.voteAverage,
+    this.voteCount,
+  });
 
   Results.fromJson(dynamic json) {
     adult = json['adult'];
@@ -93,7 +93,6 @@ class Results {
     video = json['video'];
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
-
   }
   bool? adult;
   String? backdropPath;
@@ -109,7 +108,6 @@ class Results {
   bool? video;
   double? voteAverage;
   int? voteCount;
-
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -129,5 +127,4 @@ class Results {
     map['vote_count'] = voteCount;
     return map;
   }
-
 }

@@ -26,8 +26,9 @@ class TopRatedMovies extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: InkWell(
-              onTap: (){
-                Navigator.of(context).pushNamed(DetailsScreen.routeName, arguments: movie[index].id!);
+              onTap: () {
+                Navigator.of(context).pushNamed(DetailsScreen.routeName,
+                    arguments: movie[index].id!);
               },
               child: CachedNetworkImage(
                 imageUrl: '${ApiConstant.apiImage}${movie[index].backdropPath}',

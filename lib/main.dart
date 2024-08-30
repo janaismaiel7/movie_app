@@ -10,7 +10,7 @@ import 'package:movies_app/splashScreen/splashScreen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-   await FirebaseFirestore.instance.enableNetwork();
+  await FirebaseFirestore.instance.enableNetwork();
   runApp(MyApp());
 }
 
@@ -21,15 +21,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner:  false ,
+      debugShowCheckedModeBanner: false,
       routes: {
-        Splashscreen.routeName : (context) => Splashscreen(),
-        DetailsScreen.routeName:(context) => DetailsScreen()
+        Splashscreen.routeName: (context) => Splashscreen(),
+        DetailsScreen.routeName: (context) => DetailsScreen()
       },
-      initialRoute: Splashscreen.routeName ,
+      initialRoute: Splashscreen.routeName,
       theme: MyAppTheme.appTheme,
     );
   }
 }
-
-

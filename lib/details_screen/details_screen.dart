@@ -102,40 +102,47 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         children: [
                           Column(
                             children: [
-                              Stack(
-                                children:[ ClipRRect(
+                              Stack(children: [
+                                ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
                                   child: CachedNetworkImage(
-                                    imageUrl: '${ApiConstant.apiImage}${response.backdropPath}',
+                                    imageUrl:
+                                        '${ApiConstant.apiImage}${response.backdropPath}',
                                     width: double.infinity,
-                                    height: MediaQuery.of(context).size.height /2.5 ,
+                                    height: MediaQuery.of(context).size.height /
+                                        2.5,
                                     fit: BoxFit.cover,
                                     placeholder: (context, url) => Center(
                                       child: CircularProgressIndicator(
                                         color: MyAppColors.primaryColor,
                                       ),
                                     ),
-                                    errorWidget: (context, url, error) => Icon(Icons.error),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
                                   ),
                                 ),
-                                  Center(child: Padding(
-                                    padding: const EdgeInsets.only(
-                                      top: 120
-                                    ),
-                                    child: IconButton(onPressed: (){}
-                                        , icon: Icon(Icons.play_circle_outline ,color: MyAppColors.primaryColor,
-                                        size: 65,)),
-                                  ))
-                                ] ),
+                                Center(
+                                    child: Padding(
+                                  padding: const EdgeInsets.only(top: 120),
+                                  child: IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.play_circle_outline,
+                                        color: MyAppColors.primaryColor,
+                                        size: 65,
+                                      )),
+                                ))
+                              ]),
                             ],
                           ),
                           SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.01
-                          ),
+                              height:
+                                  MediaQuery.of(context).size.height * 0.01),
                           Text(
                             response.title!,
                             style: GoogleFonts.inter(
-                              textStyle: Theme.of(context).textTheme.titleMedium,
+                              textStyle:
+                                  Theme.of(context).textTheme.titleMedium,
                             ),
                           ),
                           SizedBox(
@@ -152,7 +159,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   ),
                                 ),
                               ),
-
                             ],
                           ),
                           SizedBox(
@@ -163,10 +169,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             children: [
                               CachedNetworkImage(
                                 imageUrl:
-                                '${ApiConstant.apiImage}${response.posterPath}',
+                                    '${ApiConstant.apiImage}${response.posterPath}',
                                 fit: BoxFit.cover,
                                 width: MediaQuery.of(context).size.width * 0.4,
-                                height: MediaQuery.of(context).size.height * 0.25,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.25,
                                 placeholder: (context, url) => Center(
                                   child: CircularProgressIndicator(
                                     color: MyAppColors.primaryColor,
@@ -181,36 +188,38 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     response.genres != null &&
-                                        response.genres!.isNotEmpty
+                                            response.genres!.isNotEmpty
                                         ? Wrap(
-                                      spacing: 8.0,//horizontal
-                                      runSpacing: 8.0, //vertical
-                                      children: response.genres!.map((genre) {
-                                        return Container(
-                                          decoration: BoxDecoration(
-                                            color: Colors.transparent,
-                                            border: Border.all(
-                                                color:
-                                                MyAppColors.blackColor),
-                                          ),
-                                          padding: EdgeInsets.all(8.0),
-                                          child: Text(
-                                            genre.name!,
-                                            style: GoogleFonts.inter(
-                                              textStyle: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium,
-                                            ),
-                                          ),
-                                        );
-                                      }).toList(),
-                                    )
+                                            spacing: 8.0, //horizontal
+                                            runSpacing: 8.0, //vertical
+                                            children:
+                                                response.genres!.map((genre) {
+                                              return Container(
+                                                decoration: BoxDecoration(
+                                                  color: Colors.transparent,
+                                                  border: Border.all(
+                                                      color: MyAppColors
+                                                          .blackColor),
+                                                ),
+                                                padding: EdgeInsets.all(8.0),
+                                                child: Text(
+                                                  genre.name!,
+                                                  style: GoogleFonts.inter(
+                                                    textStyle: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium,
+                                                  ),
+                                                ),
+                                              );
+                                            }).toList(),
+                                          )
                                         : Center(
-                                      child: Text('No genres available'),
-                                    ),
+                                            child: Text('No genres available'),
+                                          ),
                                     SizedBox(
-                                      height: MediaQuery.of(context).size.height *
-                                          0.01,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.01,
                                     ),
                                     Text(
                                       response.overview!,
@@ -219,13 +228,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                             .textTheme
                                             .bodyMedium
                                             ?.copyWith(
-                                          height: 1.5,
-                                        ),
+                                              height: 1.5,
+                                            ),
                                       ),
                                     ),
                                     SizedBox(
-                                      height: MediaQuery.of(context).size.height *
-                                          0.01,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.01,
                                     ),
                                     Row(
                                       children: [
@@ -254,7 +264,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           Text(
                             'More like this',
                             style: GoogleFonts.inter(
-                              textStyle: Theme.of(context).textTheme.titleMedium,
+                              textStyle:
+                                  Theme.of(context).textTheme.titleMedium,
                             ),
                           ),
                           SizedBox(
@@ -300,7 +311,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           scrollDirection: Axis.horizontal,
                           itemCount: movies.length,
                           itemBuilder: (context, index) {
-                            return MoreLikeThisMovies(movie: movies, index: index);
+                            return MoreLikeThisMovies(
+                                movie: movies, index: index);
                           },
                         ),
                       );

@@ -11,13 +11,13 @@ class PopularMovie extends StatefulWidget {
   final List<Results> movies;
 
   PopularMovie({required this.movies});
-  
+
   @override
   _PopularMovieState createState() => _PopularMovieState();
 }
 
 class _PopularMovieState extends State<PopularMovie> {
-    final Watchlistservices watchlistservices = Watchlistservices();
+  final Watchlistservices watchlistservices = Watchlistservices();
 
   int _currentIndex = 0;
   @override
@@ -27,7 +27,6 @@ class _PopularMovieState extends State<PopularMovie> {
       children: [
         CarouselSlider.builder(
           itemCount: widget.movies.length,
-
           itemBuilder: (context, itemIndex, realIndex) {
             final movie = widget.movies[itemIndex];
             return Container(
@@ -41,7 +40,6 @@ class _PopularMovieState extends State<PopularMovie> {
                   ),
                 ),
                 errorWidget: (context, url, error) => Icon(Icons.error),
-
               ),
             );
           },
@@ -76,10 +74,10 @@ class _PopularMovieState extends State<PopularMovie> {
                     ),
                   ],
                 ),
-                
-                child: Stack(
-                  children: [CachedNetworkImage(
-                    imageUrl: '${ApiConstant.apiImage}${widget.movies[_currentIndex].posterPath}' ,
+                child: Stack(children: [
+                  CachedNetworkImage(
+                    imageUrl:
+                        '${ApiConstant.apiImage}${widget.movies[_currentIndex].posterPath}',
                     fit: BoxFit.cover,
                     width: MediaQuery.of(context).size.width * 0.4,
                     height: MediaQuery.of(context).size.height * 0.25,
@@ -91,23 +89,23 @@ class _PopularMovieState extends State<PopularMovie> {
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                   Container(
-          color: MyAppColors.greyColor.withOpacity(0.5),
-          child: IconButton(
-              onPressed: () {
-                watchlistservices.addToWatchList(widget.movies[_currentIndex]);
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text('Added to WatchList'),
-                ));
-              },
-              icon: Icon(
-                Icons.add,
-                color: MyAppColors.blackColor,
-              )),
-        ),
-            ]),
+                    color: MyAppColors.greyColor.withOpacity(0.5),
+                    child: IconButton(
+                        onPressed: () {
+                          watchlistservices
+                              .addToWatchList(widget.movies[_currentIndex]);
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('Added to WatchList'),
+                          ));
+                        },
+                        icon: Icon(
+                          Icons.add,
+                          color: MyAppColors.blackColor,
+                        )),
+                  ),
+                ]),
               ),
-              
-              SizedBox(width: MediaQuery.of(context).size.width*0.02),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.02),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 100),
@@ -117,32 +115,37 @@ class _PopularMovieState extends State<PopularMovie> {
                       Text(
                         widget.movies[_currentIndex].title!,
                         style: GoogleFonts.inter(
-                          textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18
-                          ),
+                          textStyle: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(
+                                  fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.01),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01),
                       Text(
                         widget.movies[_currentIndex].overview!,
                         style: GoogleFonts.inter(
-                          textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            height: 1.5,
-                          ),
+                          textStyle:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    height: 1.5,
+                                  ),
                         ),
                         maxLines: 4,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.01),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01),
                       Text(
                         widget.movies[_currentIndex].releaseDate!,
                         style: GoogleFonts.inter(
-                          textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          ),
+                          textStyle: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(),
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -150,9 +153,7 @@ class _PopularMovieState extends State<PopularMovie> {
             ],
           ),
         ),
-        
       ],
-    
     );
   }
 }

@@ -13,7 +13,7 @@ class NewReleasesMovie extends StatelessWidget {
 
   NewReleasesMovie({required this.movie, required this.index});
 
-  final Watchlistservices _watchlistservices =Watchlistservices();
+  final Watchlistservices _watchlistservices = Watchlistservices();
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +22,16 @@ class NewReleasesMovie extends StatelessWidget {
         Container(
           margin: EdgeInsets.symmetric(horizontal: 10),
           width: MediaQuery.of(context).size.width * 0.33,
-          height:MediaQuery.of(context).size.width * 0.5 ,
+          height: MediaQuery.of(context).size.width * 0.5,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: InkWell(
-              onTap: (){
-                Navigator.of(context).pushNamed(
-                    DetailsScreen.routeName ,
-                arguments: movie[index].id!);
+              onTap: () {
+                Navigator.of(context).pushNamed(DetailsScreen.routeName,
+                    arguments: movie[index].id!);
               },
               child: CachedNetworkImage(
                 imageUrl: '${ApiConstant.apiImage}${movie[index].backdropPath}',
@@ -42,26 +41,25 @@ class NewReleasesMovie extends StatelessWidget {
                     color: MyAppColors.primaryColor,
                   ),
                 ),
-                errorWidget: (context, url, error) => Icon(Icons.error), // Error icon
+                errorWidget: (context, url, error) =>
+                    Icon(Icons.error), // Error icon
               ),
             ),
           ),
-          
         ),
-
         Container(
-          
           color: MyAppColors.greyColor.withOpacity(0.5),
-          child: 
-          IconButton(onPressed: (){
-          _watchlistservices.addToWatchList(movie[index]);
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Added to Watch List!'))
-          );
-          },
-          icon: Icon(Icons.add,color: MyAppColors.blackColor,)),
+          child: IconButton(
+              onPressed: () {
+                _watchlistservices.addToWatchList(movie[index]);
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Added to Watch List!')));
+              },
+              icon: Icon(
+                Icons.add,
+                color: MyAppColors.blackColor,
+              )),
         )
-        
       ],
     );
   }

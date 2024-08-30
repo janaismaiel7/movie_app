@@ -13,7 +13,9 @@ class PopularViewModel extends Cubit<HomeScreenState> {
       var response = await Api.getPopularMovies();
       if (response != null && response.isNotEmpty) {
         emit(LoadingState());
-        emit(SuccessState(movie: response,));
+        emit(SuccessState(
+          movie: response,
+        ));
       } else {
         emit(ErrorState(errorMessage: 'No movies found'));
       }
