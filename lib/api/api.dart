@@ -13,6 +13,8 @@ class Api {
       'https://api.themoviedb.org/3/movie/popular?api_key=${ApiConstant.apiKey}';
   static String topRatedUrl =
       'https://api.themoviedb.org/3/movie/top_rated?api_key=${ApiConstant.apiKey}';
+  static String SearchUrl =
+      'https://api.themoviedb.org/3/search/movie?api_key=${ApiConstant.apiKey}';
   static Future<List<Results>> getUpComingMovies() async {
     final response = await http.get(Uri.parse(upComingUrl));
     if (response.statusCode == 200) {
@@ -72,7 +74,21 @@ class Api {
       throw Exception('Failed to more like this movies');
     }
   }
-    static Future<List<Results>> getMoviesforCategories(int movieId) async {
+
+  static Future<List<SearchResults>> searchList(String searchVal) async {
+    final response =
+        await http.get(Uri.parse('${SearchUrl}&query=${searchVal}'));
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      var searchJson = data['results'] as List;
+      List<SearchResults> searchResultsList =
+          searchJson.map((json) => SearchResults.fromJson(json)).toList();
+      return searchResultsList;
+    }
+    throw Exception('Failed to load search results');
+  }
+
+  static Future<List<Results>> getMoviesforCategories(int movieId) async {
     final response = await http.get(Uri.parse(upComingUrl));
     if (response.statusCode == 200) {
       final List<dynamic> data = jsonDecode(response.body)['results'];
