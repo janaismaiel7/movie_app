@@ -24,7 +24,8 @@ Navigator.of(context).pushReplacement(
     return Scaffold(
       body: 
       Center(
-        child: Image.asset('assets/images/splash.png',fit: BoxFit.cover,),
+        child: Image.asset('assets/images/splash.png',fit: BoxFit.cover,
+        height: double.infinity ,width:  double.infinity,),
       ),
     );
   }
