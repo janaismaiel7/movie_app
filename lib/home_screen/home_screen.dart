@@ -18,8 +18,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   PopularViewModel popularViewModel = PopularViewModel();
-  NewReleasesViewModel  newReleasesViewModel=NewReleasesViewModel();
-  TopRatedViewModel topRatedViewModel=TopRatedViewModel();
+  NewReleasesViewModel newReleasesViewModel = NewReleasesViewModel();
+  TopRatedViewModel topRatedViewModel = TopRatedViewModel();
 
   @override
   void initState() {
@@ -49,7 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
               BlocBuilder<PopularViewModel, HomeScreenState>(
                 builder: (context, state) {
                   if (state is LoadingState) {
@@ -75,7 +77,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   } else if (state is SuccessState) {
                     List<Results> movies = state.movie;
-                    return PopularMovie(movies: movies,);
+                    return PopularMovie(
+                      movies: movies,
+                    );
                   }
                   return Center(
                     child: CircularProgressIndicator(
@@ -84,102 +88,113 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
               ),
-              SizedBox(height: MediaQuery.of(context).size.height*0.19,),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.19,
+              ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Text('New Releases' ,style: GoogleFonts.inter(
-                  textStyle: Theme.of(context).textTheme.titleMedium
-                ),),
-              ) ,
-              BlocBuilder<NewReleasesViewModel,HomeScreenState>(
-                  builder: (context,state){
-                    if(state is LoadingState){
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: MyAppColors.primaryColor,
+                child: Text(
+                  'New Releases',
+                  style: GoogleFonts.inter(
+                      textStyle: Theme.of(context).textTheme.titleMedium),
+                ),
+              ),
+              BlocBuilder<NewReleasesViewModel, HomeScreenState>(
+                  builder: (context, state) {
+                if (state is LoadingState) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: MyAppColors.primaryColor,
+                    ),
+                  );
+                } else if (state is ErrorState) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(state.errorMessage),
+                        ElevatedButton(
+                          onPressed: () {
+                            newReleasesViewModel.getNewReleases();
+                          },
+                          child: Text('Try Again'),
                         ),
-                      );
-                    }else if(state is ErrorState){
-                      return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(state.errorMessage),
-                          ElevatedButton(
-                            onPressed: () {
-                              newReleasesViewModel.getNewReleases();
-                            },
-                            child: Text('Try Again'),
-                          ),
-                        ],
-                      ),
-                      );
-                    } else if(state is SuccessState){
-                      final movies = state.movie;
-                      return SizedBox(
-                         height: MediaQuery.of(context).size.width*0.4,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                            itemCount: movies.length,
-                            itemBuilder: (context,index){
-                              return NewReleasesMovie(movie: movies, index: index);
-                            }),
-                      );
-                    } return Center(
-                      child: CircularProgressIndicator(
-                        color: MyAppColors.primaryColor,
-                      ),
-                    );
-                  }),
-              SizedBox(height: MediaQuery.of(context).size.height*0.04,),
+                      ],
+                    ),
+                  );
+                } else if (state is SuccessState) {
+                  final movies = state.movie;
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.width * 0.4,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: movies.length,
+                        itemBuilder: (context, index) {
+                          return NewReleasesMovie(movie: movies, index: index);
+                        }),
+                  );
+                }
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: MyAppColors.primaryColor,
+                  ),
+                );
+              }),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.04,
+              ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Text('Top Rated' ,style: GoogleFonts.inter(
-                    textStyle: Theme.of(context).textTheme.titleMedium
-                ),),
-              ) ,
-              BlocBuilder<TopRatedViewModel,HomeScreenState>(
-                  builder: (context,state){
-                    if(state is LoadingState){
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: MyAppColors.primaryColor,
+                child: Text(
+                  'Top Rated',
+                  style: GoogleFonts.inter(
+                      textStyle: Theme.of(context).textTheme.titleMedium),
+                ),
+              ),
+              BlocBuilder<TopRatedViewModel, HomeScreenState>(
+                  builder: (context, state) {
+                if (state is LoadingState) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: MyAppColors.primaryColor,
+                    ),
+                  );
+                } else if (state is ErrorState) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(state.errorMessage),
+                        ElevatedButton(
+                          onPressed: () {
+                            topRatedViewModel.getTopRatedMovie();
+                          },
+                          child: Text('Try Again'),
                         ),
-                      );
-                    }else if(state is ErrorState){
-                      return Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(state.errorMessage),
-                            ElevatedButton(
-                              onPressed: () {
-                                topRatedViewModel.getTopRatedMovie();
-                              },
-                              child: Text('Try Again'),
-                            ),
-                          ],
-                        ),
-                      );
-                    } else if(state is SuccessState){
-                      final movies = state.movie;
-                      return SizedBox(
-                        height: MediaQuery.of(context).size.width*0.4,
-                        child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: movies.length,
-                            itemBuilder: (context,index){
-                              return TopRatedMovies(movie: movies, index: index);
-                            }),
-                      );
-                    } return Center(
-                      child: CircularProgressIndicator(
-                        color: MyAppColors.primaryColor,
-                      ),
-                    );
-                  }),
-              SizedBox(height: MediaQuery.of(context).size.height*0.02,)
-
+                      ],
+                    ),
+                  );
+                } else if (state is SuccessState) {
+                  final movies = state.movie;
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.width * 0.4,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: movies.length,
+                        itemBuilder: (context, index) {
+                          return TopRatedMovies(movie: movies, index: index);
+                        }),
+                  );
+                }
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: MyAppColors.primaryColor,
+                  ),
+                );
+              }),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              )
             ],
           ),
         ),

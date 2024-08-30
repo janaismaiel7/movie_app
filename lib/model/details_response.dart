@@ -27,32 +27,33 @@
 
 class DetailsResponse {
   DetailsResponse({
-      this.adult, 
-      this.backdropPath, 
-      this.belongsToCollection, 
-      this.budget, 
-      this.genres, 
-      this.homepage, 
-      this.id, 
-      this.imdbId, 
-      this.originCountry, 
-      this.originalLanguage, 
-      this.originalTitle, 
-      this.overview, 
-      this.popularity, 
-      this.posterPath, 
-      this.productionCompanies, 
-      this.productionCountries, 
-      this.releaseDate, 
-      this.revenue, 
-      this.runtime, 
-      this.spokenLanguages, 
-      this.status, 
-      this.tagline, 
-      this.title, 
-      this.video, 
-      this.voteAverage, 
-      this.voteCount,});
+    this.adult,
+    this.backdropPath,
+    this.belongsToCollection,
+    this.budget,
+    this.genres,
+    this.homepage,
+    this.id,
+    this.imdbId,
+    this.originCountry,
+    this.originalLanguage,
+    this.originalTitle,
+    this.overview,
+    this.popularity,
+    this.posterPath,
+    this.productionCompanies,
+    this.productionCountries,
+    this.releaseDate,
+    this.revenue,
+    this.runtime,
+    this.spokenLanguages,
+    this.status,
+    this.tagline,
+    this.title,
+    this.video,
+    this.voteAverage,
+    this.voteCount,
+  });
 
   DetailsResponse.fromJson(dynamic json) {
     adult = json['adult'];
@@ -68,7 +69,9 @@ class DetailsResponse {
     homepage = json['homepage'];
     id = json['id'];
     imdbId = json['imdb_id'];
-    originCountry = json['origin_country'] != null ? json['origin_country'].cast<String>() : [];
+    originCountry = json['origin_country'] != null
+        ? json['origin_country'].cast<String>()
+        : [];
     originalLanguage = json['original_language'];
     originalTitle = json['original_title'];
     overview = json['overview'];
@@ -148,16 +151,19 @@ class DetailsResponse {
     map['popularity'] = popularity;
     map['poster_path'] = posterPath;
     if (productionCompanies != null) {
-      map['production_companies'] = productionCompanies?.map((v) => v.toJson()).toList();
+      map['production_companies'] =
+          productionCompanies?.map((v) => v.toJson()).toList();
     }
     if (productionCountries != null) {
-      map['production_countries'] = productionCountries?.map((v) => v.toJson()).toList();
+      map['production_countries'] =
+          productionCountries?.map((v) => v.toJson()).toList();
     }
     map['release_date'] = releaseDate;
     map['revenue'] = revenue;
     map['runtime'] = runtime;
     if (spokenLanguages != null) {
-      map['spoken_languages'] = spokenLanguages?.map((v) => v.toJson()).toList();
+      map['spoken_languages'] =
+          spokenLanguages?.map((v) => v.toJson()).toList();
     }
     map['status'] = status;
     map['tagline'] = tagline;
@@ -167,7 +173,6 @@ class DetailsResponse {
     map['vote_count'] = voteCount;
     return map;
   }
-
 }
 
 /// english_name : "Hindi"
@@ -176,9 +181,10 @@ class DetailsResponse {
 
 class SpokenLanguages {
   SpokenLanguages({
-      this.englishName, 
-      this.iso6391, 
-      this.name,});
+    this.englishName,
+    this.iso6391,
+    this.name,
+  });
 
   SpokenLanguages.fromJson(dynamic json) {
     englishName = json['english_name'];
@@ -196,7 +202,6 @@ class SpokenLanguages {
     map['name'] = name;
     return map;
   }
-
 }
 
 /// iso_3166_1 : "IN"
@@ -204,8 +209,9 @@ class SpokenLanguages {
 
 class ProductionCountries {
   ProductionCountries({
-      this.iso31661, 
-      this.name,});
+    this.iso31661,
+    this.name,
+  });
 
   ProductionCountries.fromJson(dynamic json) {
     iso31661 = json['iso_3166_1'];
@@ -220,7 +226,6 @@ class ProductionCountries {
     map['name'] = name;
     return map;
   }
-
 }
 
 /// id : 22486
@@ -230,10 +235,11 @@ class ProductionCountries {
 
 class ProductionCompanies {
   ProductionCompanies({
-      this.id, 
-      this.logoPath, 
-      this.name, 
-      this.originCountry,});
+    this.id,
+    this.logoPath,
+    this.name,
+    this.originCountry,
+  });
 
   ProductionCompanies.fromJson(dynamic json) {
     id = json['id'];
@@ -254,7 +260,6 @@ class ProductionCompanies {
     map['origin_country'] = originCountry;
     return map;
   }
-
 }
 
 /// id : 28
@@ -262,8 +267,9 @@ class ProductionCompanies {
 
 class Genres {
   Genres({
-      this.id, 
-      this.name,});
+    this.id,
+    this.name,
+  });
 
   Genres.fromJson(dynamic json) {
     id = json['id'];
@@ -278,5 +284,4 @@ class Genres {
     map['name'] = name;
     return map;
   }
-
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/browse_screen/browse_screen.dart';
+import 'package:movies_app/browse_screen/categoryFragment.dart';
 import 'package:movies_app/home_screen/home_screen.dart';
 import 'package:movies_app/my_app_colors.dart';
 import 'package:movies_app/search_screen/search_screen.dart';
@@ -13,26 +13,27 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<FirstScreen> {
-  int selectedIndex=0;
+  int selectedIndex = 0;
 
-  List<Widget>tabs=[HomeScreen(),SearchScreen(),BrowseScreen(),WatchlistScreen()];
+  List<Widget> tabs = [
+    HomeScreen(),
+    SearchScreen(),
+    BrowseScreen(),
+    WatchlistScreen()
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyAppColors.bgColor,
       bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: MyAppColors.blackColor
-        ),
+        data: Theme.of(context).copyWith(canvasColor: MyAppColors.blackColor),
         child: BottomNavigationBar(
-          currentIndex:selectedIndex ,
-          onTap: (index){
+          currentIndex: selectedIndex,
+          onTap: (index) {
             selectedIndex = index;
-            setState(() {
-
-            });
-        },
+            setState(() {});
+          },
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
@@ -53,7 +54,7 @@ class _HomeScreenState extends State<FirstScreen> {
           ],
         ),
       ),
-      body: tabs[selectedIndex] ,
+      body: tabs[selectedIndex],
     );
   }
 }

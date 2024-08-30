@@ -5,10 +5,11 @@
 
 class TopRatedResponse {
   TopRatedResponse({
-      this.page, 
-      this.results, 
-      this.totalPages, 
-      this.totalResults,});
+    this.page,
+    this.results,
+    this.totalPages,
+    this.totalResults,
+  });
 
   TopRatedResponse.fromJson(dynamic json) {
     page = json['page'];
@@ -36,7 +37,6 @@ class TopRatedResponse {
     map['total_results'] = totalResults;
     return map;
   }
-
 }
 
 /// adult : false
@@ -56,20 +56,21 @@ class TopRatedResponse {
 
 class Results {
   Results({
-      this.adult, 
-      this.backdropPath, 
-      this.genreIds, 
-      this.id, 
-      this.originalLanguage, 
-      this.originalTitle, 
-      this.overview, 
-      this.popularity, 
-      this.posterPath, 
-      this.releaseDate, 
-      this.title, 
-      this.video, 
-      this.voteAverage, 
-      this.voteCount,});
+    this.adult,
+    this.backdropPath,
+    this.genreIds,
+    this.id,
+    this.originalLanguage,
+    this.originalTitle,
+    this.overview,
+    this.popularity,
+    this.posterPath,
+    this.releaseDate,
+    this.title,
+    this.video,
+    this.voteAverage,
+    this.voteCount,
+  });
 
   Results.fromJson(dynamic json) {
     adult = json['adult'];
@@ -120,5 +121,4 @@ class Results {
     map['vote_count'] = voteCount;
     return map;
   }
-
 }

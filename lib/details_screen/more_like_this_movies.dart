@@ -19,16 +19,15 @@ class MoreLikeThisMovies extends StatelessWidget {
         Container(
           margin: EdgeInsets.symmetric(horizontal: 10),
           width: MediaQuery.of(context).size.width * 0.33,
-          height:MediaQuery.of(context).size.width * 0.5 ,
+          height: MediaQuery.of(context).size.width * 0.5,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: InkWell(
-              onTap: (){
-                Navigator.of(context).pushNamed(
-                    DetailsScreen.routeName ,
+              onTap: () {
+                Navigator.of(context).pushNamed(DetailsScreen.routeName,
                     arguments: movie[index].id!);
               },
               child: CachedNetworkImage(
@@ -39,7 +38,8 @@ class MoreLikeThisMovies extends StatelessWidget {
                     color: MyAppColors.primaryColor,
                   ),
                 ),
-                errorWidget: (context, url, error) => Icon(Icons.error), // Error icon
+                errorWidget: (context, url, error) =>
+                    Icon(Icons.error), // Error icon
               ),
             ),
           ),

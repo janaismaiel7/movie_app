@@ -6,11 +6,12 @@
 
 class UpComingResponse {
   UpComingResponse({
-      this.dates, 
-      this.page, 
-      this.results, 
-      this.totalPages, 
-      this.totalResults,});
+    this.dates,
+    this.page,
+    this.results,
+    this.totalPages,
+    this.totalResults,
+  });
 
   UpComingResponse.fromJson(dynamic json) {
     dates = json['dates'] != null ? Dates.fromJson(json['dates']) : null;
@@ -43,7 +44,6 @@ class UpComingResponse {
     map['total_results'] = totalResults;
     return map;
   }
-
 }
 
 /// adult : false
@@ -63,20 +63,21 @@ class UpComingResponse {
 
 class Results {
   Results({
-      this.adult, 
-      this.backdropPath, 
-      this.genreIds, 
-      this.id, 
-      this.originalLanguage, 
-      this.originalTitle, 
-      this.overview, 
-      this.popularity, 
-      this.posterPath, 
-      this.releaseDate, 
-      this.title, 
-      this.video, 
-      this.voteAverage, 
-      this.voteCount,});
+    this.adult,
+    this.backdropPath,
+    this.genreIds,
+    this.id,
+    this.originalLanguage,
+    this.originalTitle,
+    this.overview,
+    this.popularity,
+    this.posterPath,
+    this.releaseDate,
+    this.title,
+    this.video,
+    this.voteAverage,
+    this.voteCount,
+  });
 
   Results.fromJson(dynamic json) {
     adult = json['adult'];
@@ -127,7 +128,6 @@ class Results {
     map['vote_count'] = voteCount;
     return map;
   }
-
 }
 
 /// maximum : "2024-09-18"
@@ -135,8 +135,9 @@ class Results {
 
 class Dates {
   Dates({
-      this.maximum, 
-      this.minimum,});
+    this.maximum,
+    this.minimum,
+  });
 
   Dates.fromJson(dynamic json) {
     maximum = json['maximum'];
@@ -151,5 +152,4 @@ class Dates {
     map['minimum'] = minimum;
     return map;
   }
-
 }
